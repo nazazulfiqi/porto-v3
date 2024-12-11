@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import memojiImage from "@/assets/images/memoji-computer.png";
+import memojiImage from "@/assets/images/memoji-zul.png";
 import Image from "next/image";
 import ArrowDwon from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
@@ -106,7 +106,7 @@ export const HeroSection = () => {
         <div className="flex flex-col items-center">
           <Image
             src={memojiImage}
-            className="size-[100px]"
+            className="h-[100px] w-[74px]"
             alt="Person peeking from behind laptop"
           />
           <div className="bg-gray-950 boder border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
