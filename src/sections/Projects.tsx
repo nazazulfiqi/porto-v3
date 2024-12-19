@@ -7,6 +7,7 @@ import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
+import Link from "next/link";
 
 const portfolioProjects = [
   {
@@ -30,7 +31,7 @@ const portfolioProjects = [
       { title: "Enhanced dashboard usability" },
       { title: "Boosted analytics accuracy" },
     ],
-    link: "https://www.trecdigital.id/",
+    link: "https://www.trecdigital.id",
     image: datahub,
   },
   {
@@ -42,7 +43,7 @@ const portfolioProjects = [
       { title: "Integrated LMS seamlessly" },
       { title: "Expanded education access" },
     ],
-    link: "https:kampusgratis.id",
+    link: "https://kampusgratis.id",
     image: kampusGratis,
   },
 ];
@@ -89,12 +90,12 @@ export const ProjectsSection = () => {
                       </li>
                     ))}
                   </ul>
-                  <a href={project.link}>
+                  <Link href={project.link} target="_blank">
                     <button className="bg-white text-gray-950 inline-flex items-center justify-center gap-2 mt-8 h-12 w-full rounded-xl font-semibold md:w-auto px-6">
                       <span>Visit Live Site</span>
                       <ArrowUpRightIcon className="size-4" />
                     </button>
-                  </a>
+                  </Link>
                 </div>
                 <div className="relative">
                   <Image
