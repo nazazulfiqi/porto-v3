@@ -12,34 +12,28 @@ import { Fragment } from "react";
 
 const testimonials = [
   {
-    name: "Alex Turner",
-    position: "Marketing Manager @ TechStartups",
-    text: "Alex was instrumental in transforming our website into a powerful marketing tool. His attention to detail and ability to understand our brand is exceptional. We're thrilled with the results!",
-    avatar: memojiAvatar1,
+    name: "Iwan Agus Fatahi",
+    position: "Senior System Architect @ TREC Digital",
+    text: "Naza is a talented and detail-oriented developer. His ability to solve complex problems and deliver high-quality solutions is truly impressive.",
+    avatar: memojiAvatar5,
   },
   {
-    name: "Olivia Green",
-    position: "Head of Design @ GreenLeaf",
-    text: "Working with Alex was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The website has exceeded our expectations.",
-    avatar: memojiAvatar2,
-  },
-  {
-    name: "Daniel White",
-    position: "CEO @ InnovateCo",
-    text: "Alex's ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
+    name: "Rizki Pratama",
+    position: "Frontend Lead @ M-Knows Consulting",
+    text: "Naza's collaboration and teamwork skills are exceptional. He worked effectively with the team during the internship program, significantly contributing to the success of the Kampus Gratis project in the MBKM V program at PT Menara Indonesia.",
     avatar: memojiAvatar3,
   },
   {
-    name: "Emily Carter",
-    position: "Product Manager @ GlobalTech",
-    text: "Alex is a true frontend wizard. He took our complex product and transformed it into an intuitive and engaging user interface. We're already seeing positive feedback from our customers.",
-    avatar: memojiAvatar4,
+    name: "Muhammad Haikal",
+    position: "Mentor @ Skilvul",
+    text: "Good job, Naza! Keep up the great work and never stop exploring new opportunities. Keep unlocking your potential. See you at the top!",
+    avatar: memojiAvatar1,
   },
   {
-    name: "Michael Brown",
-    position: "Director of IT @ MegaCorp",
-    text: "Alex's work on our website has been nothing short of exceptional. He's a talented developer who is also a great communicator. We highly recommend him.",
-    avatar: memojiAvatar5,
+    name: "Muthia Solikin",
+    position: "Data Analyst @ Prudential Syariah",
+    text: "Naza demonstrates a strong analytical mindset and a passion for continuous learning. His dedication to personal and professional growth is truly inspiring.",
+    avatar: memojiAvatar2,
   },
 ];
 
@@ -48,11 +42,10 @@ export const TestimonialsSection = () => {
     <div className="py-16 lg:py-24">
       <div className="container">
         <SectionHeader
-          eyebrow="Happy Clients"
-          title="What Clients Say about Me"
-          description="Don't just take my word for it. See what my clients have to say about my work."
+          eyebrow="Happy People"
+          title="What People Say about Me"
+          description="Don't just take my word for it. See what people have to say about my work."
         />
-
         <div className="mt-12 lg:mt-20 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
           <div className="flex gap-8 pr-8 flex-none animate-move-left [animation-duration:90s] hover:[animation-play-state:paused]">
             {[...new Array(2)].fill(0).map((_, idx) => (
