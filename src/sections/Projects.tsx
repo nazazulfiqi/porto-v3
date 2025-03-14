@@ -108,6 +108,14 @@ export const ProjectsSection = () => {
             </Card>
           ))}
         </div>
+        <div className="flex justify-center w-full">
+          <Link
+            href="/projects"
+            className="bg-white text-gray-950 inline-flex items-center justify-center gap-2 mt-8 h-12 w-full md:w-1/2  rounded-2xl font-semibold  px-6"
+          >
+            See All Projects
+          </Link>
+        </div>
       </div>
     </section>
   );
