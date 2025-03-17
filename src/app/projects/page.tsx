@@ -1,4 +1,4 @@
-import ProjectModule from "@/modules/project/ProjectModule";
+import ProjectModule from "@/modules/projects/ProjectModule";
 import React from "react";
 
 export default function ProjectPage() {
