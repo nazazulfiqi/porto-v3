@@ -27,13 +27,13 @@ const ProjectModule = () => {
           href="/"
           className="flex gap-2 hover:pl-3 transition-all duration-300 items-center mb-4 cursor-pointer w-[100px] "
         >
-          <IoArrowBackCircleOutline size={18} />
+          <IoArrowBackCircleOutline size={18} className="" />
           <p className="text-lg">Back</p>
         </Link>
-        <div className="border-b border-dashed">
-          <h1 className="text-3xl font-semibold mb-2">Projects</h1>
+        <div className="border-b border-dashed border-white/60">
+          <h1 className="text-3xl  mb-2 font-serif">Projects</h1>
 
-          <p className="mb-6">
+          <p className="mb-6 text-white/60">
             Showcasing my passion for technology, design, and problem-solving
             through code.
           </p>
@@ -41,7 +41,10 @@ const ProjectModule = () => {
 
         <div className="w-full flex justify-between items-center mt-6">
           <div className="md:w-1/3">
-            <Input placeholder="Search..." className="placeholder:text-white" />
+            <Input
+              placeholder="Search..."
+              className="placeholder:text-white/60 border-white/60 border "
+            />
 
             {/* <input
               type="email"
@@ -85,7 +88,7 @@ const ProjectModule = () => {
         </div>
         {portfolioProjects.length > 0 ? (
           showGrid ? (
-            <div className="grid grid-cols-1 md:grid-cols-2    gap-8 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
               {allProjects.map((project, projectIndex) => (
                 <CardProject
                   image={project.thumbnail}
@@ -95,6 +98,7 @@ const ProjectModule = () => {
                   title={project.title}
                   link={project.link}
                   description={project.description}
+                  techStack={project.techstack}
                 />
               ))}
             </div>

@@ -4,6 +4,18 @@ import datahub from "@/assets/images/datahub.png";
 
 export const portfolioProjects = [
   {
+    company: "M-Knows Consulting",
+    year: "2023",
+    title: "Kampus Gratis",
+    results: [
+      { title: "Empowered 20% more students" },
+      { title: "Integrated LMS seamlessly" },
+      { title: "Expanded education access" },
+    ],
+    link: "https://kampusgratis.id",
+    image: kampusGratis,
+  },
+  {
     company: "STMIK Jakarta STI&K",
     year: "2024",
     title: "Jakstik Career",
@@ -26,17 +38,5 @@ export const portfolioProjects = [
     ],
     link: "https://www.trecdigital.id",
     image: datahub,
-  },
-  {
-    company: "M-Knows Consulting",
-    year: "2023",
-    title: "Kampus Gratis",
-    results: [
-      { title: "Empowered 20% more students" },
-      { title: "Integrated LMS seamlessly" },
-      { title: "Expanded education access" },
-    ],
-    link: "https://kampusgratis.id",
-    image: kampusGratis,
   },
 ];
