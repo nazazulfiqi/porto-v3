@@ -7,32 +7,42 @@ import { portfolioProjects } from "@/constants/projects";
 import { ArrowUpRightIcon, CheckCircleIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   IoArrowBackCircleOutline,
   IoGridOutline,
   IoListOutline,
 } from "react-icons/io5";
 import CardProject from "@/modules/projects/component/CardProject";
-import { allProjects } from "@/constants/all-projects";
+import { allProjects, searchProjectsByTitle } from "@/constants/all-projects";
+// Pastikan ini sesuai path
 
 const ProjectModule = () => {
-  const [showGrid, setShowGrid] = React.useState(true);
-  const [showList, setShowList] = React.useState(false);
+  const [showGrid, setShowGrid] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProjects, setFilteredProjects] = useState(allProjects);
+
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredProjects(allProjects);
+    } else {
+      setFilteredProjects(searchProjectsByTitle(searchTerm));
+    }
+  }, [searchTerm]);
 
   return (
     <div className="py-8">
       <div className="container">
         <Link
           href="/"
-          className="flex gap-2 hover:pl-3 transition-all duration-300 items-center mb-4 cursor-pointer w-[100px] "
+          className="flex gap-2 hover:pl-3 transition-all duration-300 items-center mb-4 cursor-pointer w-[100px]"
         >
-          <IoArrowBackCircleOutline size={18} className="" />
+          <IoArrowBackCircleOutline size={18} />
           <p className="text-lg">Back</p>
         </Link>
-        <div className="border-b border-dashed border-white/60">
-          <h1 className="text-3xl  mb-2 font-serif">Projects</h1>
 
+        <div className="border-b border-dashed border-white/60">
+          <h1 className="text-3xl mb-2 font-serif">Projects</h1>
           <p className="mb-6 text-white/60">
             Showcasing my passion for technology, design, and problem-solving
             through code.
@@ -43,74 +53,59 @@ const ProjectModule = () => {
           <div className="md:w-1/3">
             <Input
               placeholder="Search..."
-              className="placeholder:text-white/60 border-white/60 border "
+              className="placeholder:text-white/60 border-white/60 border"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-
-            {/* <input
-              type="email"
-              name="email"
-              id="email"
-              autoComplete="email"
-              required
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-            /> */}
           </div>
           <div className="flex items-center gap-3">
             <Button
               size={"icon"}
               className={`${
                 showGrid
-                  ? "bg-white hover:bg-slate-100  text-[#111] shadow-md"
+                  ? "bg-white hover:bg-slate-100 text-[#111] shadow-md"
                   : "bg-gray-900 text-white shadow-md hover:bg-gray-700"
               } border border-slate-400`}
-              onClick={() => {
-                setShowGrid(!showGrid); // Fix: Use the new state value directly
-                setShowList(!showList);
-              }}
+              // onClick={() => setShowGrid(true)}
             >
               <IoGridOutline size={24} />
             </Button>
-            <Button
+            {/* <Button
               size={"icon"}
               className={`${
-                showList
-                  ? "bg-white hover:bg-slate-100  text-[#111] shadow-md"
+                !showGrid
+                  ? "bg-white hover:bg-slate-100 text-[#111] shadow-md"
                   : "bg-gray-900 text-white shadow-md hover:bg-gray-700"
-              }  border border-slate-400 `}
-              onClick={() => {
-                setShowGrid(!showGrid);
-                setShowList(!showList); // Fix: Use the new state value directly
-              }}
+              } border border-slate-400`}
+              onClick={() => setShowGrid(false)}
             >
               <IoListOutline size={24} />
-            </Button>
+            </Button> */}
           </div>
         </div>
-        {portfolioProjects.length > 0 ? (
+
+        {filteredProjects.length > 0 ? (
           showGrid ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-              {allProjects.map((project, projectIndex) => (
+              {filteredProjects.map((project, projectIndex) => (
                 <CardProject
                   image={project.thumbnail}
-                  key={project.id}
+                  key={projectIndex}
                   company={"TREC Digital"}
                   year={"2024"}
                   title={project.title}
-                  link={project.link}
+                  link={`/projects/${project.slug}`}
                   description={project.description}
                   techStack={project.techstack}
                 />
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1  gap-8 mt-6 ">
-              {portfolioProjects.map((project, projectIndex) => (
+            <div className="grid grid-cols-1 gap-8 mt-6">
+              {/* {filteredProjects.map((project, projectIndex) => (
                 <Card
                   key={project.title}
-                  className=" px-8 pt-8 pb-0 md:pt-12 md:px-10 lg:pt-16 lg:px-20 sticky top-16"
-                  style={{
-                    top: `calc(64px + ${projectIndex * 40}px)`,
-                  }}
+                  className="px-8 pt-8 pb-0 md:pt-12 md:px-10 lg:pt-16 lg:px-20"
                 >
                   <div className="lg:grid lg:grid-cols-2 lg:gap-16">
                     <div className="lg:pb-16">
@@ -120,7 +115,7 @@ const ProjectModule = () => {
                         <span>{project.year}</span>
                       </div>
 
-                      <h3 className="font-serif text-2xl mt-2 md:text-4xl md:mt-5 ">
+                      <h3 className="font-serif text-2xl mt-2 md:text-4xl md:mt-5">
                         {project.title}
                       </h3>
                       <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
@@ -130,7 +125,7 @@ const ProjectModule = () => {
                             key={result.title}
                             className="flex gap-2 text-sm text-white/50 md:text-base"
                           >
-                            <CheckCircleIcon className="size-5 md:size-6 " />
+                            <CheckCircleIcon className="size-5 md:size-6" />
                             <span>{result.title}</span>
                           </li>
                         ))}
@@ -151,11 +146,13 @@ const ProjectModule = () => {
                     </div>
                   </div>
                 </Card>
-              ))}
+              ))} */}
             </div>
           )
         ) : (
-          <p className="text-white mt-6 text-center">Project Belum Tersedia</p>
+          <p className="text-white/50 mt-12 text-center">
+            Project Tidak Ditemukan
+          </p>
         )}
       </div>
     </div>

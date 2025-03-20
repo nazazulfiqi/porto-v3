@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
@@ -11,9 +13,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import Image from "next/image";
+import { TProjectItem } from "@/types/projects";
+import { iconMap } from "@/lib/iconMap";
 
-const DetailProjectModule = () => {
+const DetailProjectModule = ({ project }: { project: TProjectItem }) => {
+  console.log(project);
+
   return (
     <div className="py-8">
       <div className="container">
@@ -25,75 +37,84 @@ const DetailProjectModule = () => {
           <p className="text-lg">Back</p>
         </Link>
         <div className="border-b border-dashed">
-          <h1 className="text-3xl font-semibold mb-2">Project Name</h1>
+          <h1 className="text-3xl font-serif  mb-4">{project.title}</h1>
         </div>
 
-        <div className="md:flex justify-between mt-2">
-          <div className="flex items-center gap-1 mb-2">
-            <p className="font">Tech Stack :</p>
+        <div className="md:flex justify-between mt-5">
+          <div className="flex items-center gap-1">
             <div className="flex gap-2 items-center">
-              <Button
-                size={"icon"}
-                className="min-w-0 w-unit-5 h-unit-5 text-white bg-transparent rounded-none"
-              >
-                <BiLogoTypescript className="text-blue-400" size={28} />
-              </Button>
+              {project.techstack.map((tech, index) => (
+                <TooltipProvider delayDuration={100} key={index}>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div>{iconMap[tech.icon] || null}</div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{tech.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ))}
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <Link className="flex gap-2 items-center group" href={``}>
-              <FaGithub
-                size={20}
-                className="group-hover:animate-bounce group-hover:transition-all group-hover:duration-1000 ease-in-out"
-              />
-              <p className="text-teal-500 hover:text-teal-400">Source Code</p>
-            </Link>
-            |
-            <Link className="flex gap-2 items-center group" href={"/"}>
-              <FaExternalLinkAlt
-                size={18}
-                className="group-hover:animate-bounce group-hover:transition-all group-hover:duration-1000 ease-in-out"
-              />
-              <p className="text-teal-500 hover:text-teal-400">Live Demo</p>
-            </Link>
+            {project.github && (
+              <Link
+                className="flex gap-2 items-center group"
+                href={project.github}
+                target="_blank"
+              >
+                <FaGithub
+                  size={20}
+                  className="group-hover:animate-bounce group-hover:transition-all group-hover:duration-1000 ease-in-out"
+                />
+                <p className="text-teal-500 hover:text-teal-400">Source Code</p>
+              </Link>
+            )}
+            {project.github && project.link && (
+              <span className="text-white/50">|</span>
+            )}
+
+            {project.link && (
+              <Link
+                className="flex gap-2 items-center group"
+                href={project.link}
+                target="_blank"
+              >
+                <FaExternalLinkAlt
+                  size={18}
+                  className="group-hover:animate-bounce group-hover:transition-all group-hover:duration-1000 ease-in-out"
+                />
+                <p className="text-teal-500 hover:text-teal-400">Live Demo</p>
+              </Link>
+            )}
           </div>
         </div>
 
         <div className="my-8">
           <Carousel className="w-full">
             <CarouselContent className="flex">
-              <CarouselItem className="relative w-full h-[400px]">
-                <Image
-                  src="/images/project/project-kg-cover.jpg"
-                  alt="Project-Image"
-                  width={800}
-                  height={500}
-                  className="w-full h-full object-cover object-top rounded-lg"
-                  priority
-                />
-              </CarouselItem>
-              <CarouselItem className="relative w-full h-[400px]">
-                <Image
-                  src="/images/project/project-kg-cover.jpg"
-                  alt="Project-Image"
-                  width={800}
-                  height={500}
-                  className="w-full h-full object-cover object-top rounded-lg"
-                  priority
-                />
-              </CarouselItem>
+              {project.image.map((image, index) => (
+                <CarouselItem className="relative w-full h-[400px]">
+                  <Image
+                    src={image}
+                    alt="Project-Image"
+                    width={800}
+                    height={500}
+                    className="w-full h-full object-cover object-top rounded-lg"
+                    quality={100}
+                    priority
+                  />
+                </CarouselItem>
+              ))}
             </CarouselContent>
             <CarouselPrevious className="text-gray-900" />
             <CarouselNext className="text-gray-900" />
           </Carousel>
         </div>
 
-        <div className="text-justify">
-          <p>
-            Developed the website using NextJS 13, React TypeScript, Nx
-            Monorepo, Tailwind CSS, Recoil, React Query, Zod Validation, React
-            Hook Form, and Headless UI on the front-end development.
-          </p>
+        <div className="text-justify  text-white/50">
+          <p>{project.description}</p>
         </div>
       </div>
     </div>

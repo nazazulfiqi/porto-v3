@@ -12,6 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { iconMap } from "@/lib/iconMap";
 import { ProjectType } from "@/types/projects";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,27 +20,24 @@ import React, { FC } from "react";
 import { FaReact } from "react-icons/fa";
 import {
   SiBootstrap,
+  SiExpress,
   SiMui,
+  SiMysql,
+  SiNestjs,
   SiNextdotjs,
+  SiNodedotjs,
+  SiPhp,
+  SiPostgresql,
   SiReactquery,
   SiRecoil,
   SiRedux,
+  SiShadcnui,
+  SiSocketdotio,
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
 
 // Pemetaan string ke ikon React
-const iconMap: Record<string, JSX.Element> = {
-  FaReact: <FaReact size={25} className="text-sky-600" />,
-  SiBootstrap: <SiBootstrap size={25} className="text-indigo-500 " />,
-  SiMui: <SiMui size={25} className="text-blue-300" />,
-  SiNextdotjs: <SiNextdotjs size={25} />,
-  SiReactquery: <SiReactquery size={25} className="text-rose-500" />,
-  SiRecoil: <SiRecoil size={25} className="text-blue-600" />,
-  SiRedux: <SiRedux size={25} className="text-purple-600" />,
-  SiTailwindcss: <SiTailwindcss size={25} className="text-cyan-300" />,
-  SiTypescript: <SiTypescript size={23} className="text-blue-400" />,
-};
 
 const CardProject: FC<ProjectType> = ({
   techStack,
@@ -49,8 +47,8 @@ const CardProject: FC<ProjectType> = ({
   link,
 }) => {
   return (
-    <Link href={link || "#"}>
-      <Card className="overflow-hidden text-white">
+    <Link href={link} className="block">
+      <Card className="overflow-hidden text-white border border-transparent transition-all duration-300 ease-in-out hover:after:outline-emerald-300 hover:scale-[1.03] after:transition-all after:duration-500">
         <CardHeader className="p-0">
           <div className="relative w-full h-48">
             <Image
@@ -58,7 +56,9 @@ const CardProject: FC<ProjectType> = ({
               alt={title}
               fill
               style={{ objectFit: "cover", objectPosition: "top" }}
-              className="rounded-t-lg "
+              className="rounded-t-lg"
+              quality={100}
+              priority
             />
           </div>
         </CardHeader>
@@ -71,14 +71,13 @@ const CardProject: FC<ProjectType> = ({
             {description}
           </CardDescription>
         </CardContent>
+
         <CardFooter className="pb-5 flex gap-2">
           {techStack.map((tech, index) => (
             <TooltipProvider delayDuration={100} key={index}>
               <Tooltip>
                 <TooltipTrigger>
-                  <div key={index} className="">
-                    {iconMap[tech.icon] || null}
-                  </div>
+                  <div>{iconMap[tech.icon] || null}</div>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>{tech.name}</p>

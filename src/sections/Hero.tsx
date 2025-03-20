@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+"use client";
 import memojiImage from "@/assets/images/memoji-zul.png";
 import Image from "next/image";
 import ArrowDwon from "@/assets/icons/arrow-down.svg";
@@ -7,6 +8,7 @@ import { HeroOrbit } from "@/components/HeroOrbit";
 import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export const HeroSection = () => {
   return (
@@ -141,7 +143,17 @@ export const HeroSection = () => {
             href={"https://www.linkedin.com/in/nazazulfiqi/"}
             className="inline-flex items-center gap-2 border border-white bg-white text-gray-600 px-6 h-12 rounded-xl cursor-pointer z-10"
           >
-            <span className="text-xl">👋</span>
+            <motion.span
+              className="text-xl"
+              animate={{ rotate: [0, 14, -8, 14, -4, 10, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              👋
+            </motion.span>
             <span className="font-semibold">Let's Connect</span>
           </Link>
         </div>
