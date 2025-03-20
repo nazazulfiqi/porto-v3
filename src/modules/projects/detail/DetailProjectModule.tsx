@@ -95,7 +95,7 @@ const DetailProjectModule = ({ project }: { project: TProjectItem }) => {
           <Carousel className="w-full">
             <CarouselContent className="flex">
               {project.image.map((image, index) => (
-                <CarouselItem className="relative w-full h-[400px]">
+                <CarouselItem className="relative w-full h-[400px]" key={index}>
                   <Image
                     src={image}
                     alt="Project-Image"
