@@ -40,7 +40,7 @@ const DetailProjectModule = ({ project }: { project: TProjectItem }) => {
           <h1 className="text-3xl font-serif  mb-4">{project.title}</h1>
         </div>
 
-        <div className="md:flex justify-between mt-5">
+        <div className="md:flex-row flex flex-col justify-between mt-5 gap-6">
           <div className="flex items-center gap-1">
             <div className="flex gap-2 items-center">
               {project.techstack.map((tech, index) => (
@@ -68,7 +68,9 @@ const DetailProjectModule = ({ project }: { project: TProjectItem }) => {
                   size={20}
                   className="group-hover:animate-bounce group-hover:transition-all group-hover:duration-1000 ease-in-out"
                 />
-                <p className="text-teal-500 hover:text-teal-400">Source Code</p>
+                <p className="text-teal-500 hover:text-teal-400 text-sm md:text-base">
+                  Source Code
+                </p>
               </Link>
             )}
             {project.github && project.link && (
@@ -85,14 +87,16 @@ const DetailProjectModule = ({ project }: { project: TProjectItem }) => {
                   size={18}
                   className="group-hover:animate-bounce group-hover:transition-all group-hover:duration-1000 ease-in-out"
                 />
-                <p className="text-teal-500 hover:text-teal-400">Live Demo</p>
+                <p className="text-teal-500 hover:text-teal-400 text-sm md:text-base">
+                  Live Demo
+                </p>
               </Link>
             )}
           </div>
         </div>
 
         <div className="my-8">
-          <Carousel className="w-full">
+          <Carousel className="w-[80%] md:w-full mx-auto">
             <CarouselContent className="flex">
               {project.image.map((image, index) => (
                 <CarouselItem className="relative w-full h-[400px]" key={index}>
