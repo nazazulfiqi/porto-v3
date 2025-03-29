@@ -9,6 +9,7 @@ import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ReactTyped } from "react-typed";
 
 export const HeroSection = () => {
   return (
@@ -121,13 +122,23 @@ export const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-full mx-auto">
           <h1 className="font-serif text-3xl text-center mt-8 tracking-wide md:text-5xl">
-            Empowering Ideas With Technology
+            {/* Empowering Ideas With Technology */}
+            Hi, I'm{" "}
+            <ReactTyped
+              strings={[" Naza Zulfiqi", " Software Engineer"]}
+              typeSpeed={50}
+              backSpeed={50}
+              backDelay={1500}
+              loop
+            />
           </h1>
-          <p className="mt-4 text-center text-white/60 md:text-lg">
+          <p className="mt-4 text-center text-white/60 md:text-lg max-w-lg mx-auto">
             My mission is to bring impactful ideas to life through modern,
             scalable, and user-friendly applications.
+            {/* Empowering Ideas With Technology to Build Innovative and Scalable
+            Solutions. */}
           </p>
         </div>
         <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
